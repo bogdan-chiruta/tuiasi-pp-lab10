@@ -52,7 +52,23 @@ suspend fun computeFactorials(values: List<Int>): Map<Int, Long> = coroutineScop
     //
     // 6. Returnați rezultatele:
     //    rezultate
-    TODO("De implementat: 4 corutine consumatoare calculează factorial din canal de lucru")
+    val canal = Channel<Int>()
+    launch {
+        for(v in values)
+            canal.send(v)
+        canal.close()
+    }
+    val rezultate = java.util.concurrent.ConcurrentHashMap<Int, Long>()
+
+    val joburi = (1..4).map{
+        async{
+            for(n in canal){
+                rezultate[n] = factorial(n)
+            }
+        }
+    }
+    joburi.forEach { it.await() }
+    rezultate
 }
 
 /**
@@ -66,5 +82,7 @@ fun factorial(n: Int): Long {
     // Indiciu: folosiți fold sau o buclă for
     // factorial(0) = 1
     // factorial(n) = n * factorial(n-1)
-    TODO("De implementat: calculează n! iterativ sau recursiv")
+    if(n == 0)
+        return 1L
+    return (1..n).fold(1L){acc, i -> acc * i}
 }

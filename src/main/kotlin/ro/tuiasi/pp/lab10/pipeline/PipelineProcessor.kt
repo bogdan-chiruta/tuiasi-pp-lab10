@@ -60,6 +60,29 @@ class PipelineProcessor {
         //     rezultat.add(element)
         // }
         // rezultat
-        TODO("De implementat: pipeline cu 3 etape prin canale Kotlin (înmulțire → sortare → colectare)")
+        val canalInmultire = Channel<Int>(64)
+
+        launch{
+            for(elem in input)
+                canalInmultire.send(elem * alpha)
+            canalInmultire.close()
+        }
+
+        val canalSortat = Channel<Int>(64)
+
+        launch {
+            val listaTemp = mutableListOf<Int>()
+            for(elem in canalInmultire)
+                listaTemp.add(elem)
+            listaTemp.sort()
+            for(elem in listaTemp)
+                canalSortat.send(elem)
+            canalSortat.close()
+        }
+
+        val rezultat = mutableListOf<Int>()
+        for(elem in canalSortat)
+            rezultat.add(elem)
+        rezultat
     }
 }

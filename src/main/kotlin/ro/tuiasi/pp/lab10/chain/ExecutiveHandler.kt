@@ -27,6 +27,10 @@ class ExecutiveHandler : Handler {
         // 3. Delegați la next: val raspuns = next?.handleRequest(message) ?: message
         // 4. Logați răspunsul: println("[Executive] Răspuns: $raspuns")
         // 5. Returnați răspunsul
-        TODO("De implementat: procesează asincron și delegă la next handler")
+        delay(100)
+        println("[Executive] Am primit: $message")
+        val raspuns = next?.handleRequest(message) ?: message
+        println("[Executive] Raspuns: $raspuns")
+        return raspuns
     }
 }

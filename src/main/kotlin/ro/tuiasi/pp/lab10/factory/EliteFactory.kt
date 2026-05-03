@@ -18,6 +18,6 @@ class EliteFactory : Factory {
     override fun createHandler(): Handler {
         // TODO("De implementat")
         // Returnați un CEOHandler() nou
-        TODO("De implementat: instanțiază și returnează un CEOHandler")
+        return CEOHandler()
     }
 }

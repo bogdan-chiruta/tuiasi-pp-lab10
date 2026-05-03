@@ -32,6 +32,11 @@ class CEOHandler : Handler {
         // 4. Delegați la next: val raspuns = next?.handleRequest(cerere) ?: cerere
         // 5. Logați răspunsul primit: println("[CEO] Am primit răspunsul: $raspuns")
         // 6. Returnați răspunsul
-        TODO("De implementat: inițiază cererea cu 'Request - <mesaj>' și delegă la next")
+        delay(100)
+        val cerere = "Request - $message"
+        println("[CEO] Trimite cererea: $cerere")
+        val raspuns = next?.handleRequest(cerere) ?: cerere
+        println("[CEO] Am primit raspunsul: $raspuns")
+        return raspuns
     }
 }

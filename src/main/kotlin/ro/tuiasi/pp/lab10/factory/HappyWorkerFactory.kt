@@ -18,6 +18,6 @@ class HappyWorkerFactory : Factory {
     override fun createHandler(): Handler {
         // TODO("De implementat")
         // Returnați un HappyWorkerHandler() nou
-        TODO("De implementat: instanțiază și returnează un HappyWorkerHandler")
+        return HappyWorkerHandler()
     }
 }

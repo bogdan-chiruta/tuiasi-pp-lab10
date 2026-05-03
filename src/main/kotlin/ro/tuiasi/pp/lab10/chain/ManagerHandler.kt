@@ -27,6 +27,10 @@ class ManagerHandler : Handler {
         // 3. Delegați la next: val raspuns = next?.handleRequest(message) ?: message
         // 4. Logați răspunsul: println("[Manager] Răspuns: $raspuns")
         // 5. Returnați răspunsul
-        TODO("De implementat: procesează asincron și delegă la next handler")
+        delay(100)
+        println("[Manager] Am primit: $message")
+        val raspuns = next?.handleRequest(message) ?: message
+        println("[Manager] Raspuns: $raspuns")
+        return raspuns
     }
 }

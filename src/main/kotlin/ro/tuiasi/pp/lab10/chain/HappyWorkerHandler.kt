@@ -29,6 +29,10 @@ class HappyWorkerHandler : Handler {
         // 3. Generați răspunsul: "Response - $message"
         // 4. Logați răspunsul: println("[HappyWorker] Răspund: $raspuns")
         // 5. Returnați răspunsul (nu delegați la next!)
-        TODO("De implementat: generează răspunsul final cu formatul 'Response - <mesaj>'")
+        delay(200)
+        println("[HappyWorker] Procesez: $message")
+        val raspuns = "Response - $message"
+        println("[HappyWorker] Raspuns: $raspuns")
+        return raspuns
     }
 }
